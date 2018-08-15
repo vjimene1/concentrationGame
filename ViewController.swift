@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 
     }
     
-    var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1)/2)
+    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1)/2)
     
     var emojiChoices = ["👻", "🎃", "👻", "🎃"]
     
