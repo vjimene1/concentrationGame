@@ -8,10 +8,20 @@
 
 import Foundation
 
-class Concenration {
-    var card = [Card]
+class Concentration
+{
+    var cards = [Card]()
     
     func chooseCard(at index: Int) {
+        
+    }
+    
+    init(numberOfPairsOfCards: Int){
+        for identifier in 1...(numberOfPairsOfCards + 1) {
+            let card = Card(identifier: identifier)
+            cards.append(card)
+            cards.append(card)
+        }
         
     }
 }

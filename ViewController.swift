@@ -17,6 +17,8 @@ class ViewController: UIViewController {
 
     }
     
+    var game = Concentration()
+    
     var emojiChoices = ["👻", "🎃", "👻", "🎃"]
     
     @IBOutlet weak var flipCountLabel: UILabel!
