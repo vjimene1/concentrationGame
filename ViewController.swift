@@ -26,11 +26,22 @@ class ViewController: UIViewController {
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
-            flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
-            print(sender)
-            
+            game.chooseCard(at: cardNumber)
+            updateViewFromModel()
         } else {
             print("chosen card not in cardButons")
+        }
+    }
+    
+    func updateViewFromModel() {
+        for index in cardButtons.indices {
+            let button = cardButtons[index]
+            let cardd = game.cards[index]
+            if card.isFaceUp {
+                button.setTitle(emoji,for: UIControlState.normal)
+                button.backgroundColor =
+            } else {
+            
         }
     }
     
