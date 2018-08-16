@@ -49,10 +49,23 @@ class ViewController: UIViewController {
     
     @IBOutlet var cardButtons: [UIButton]!
     
-    var emojiChoices = ["👻", "🎃", "👻", "🎃"]
+    var emojiChoices = ["👻", "🎃", "🍭","👹","👿","💩","💀","👺","🤡"]
+    
+    var emoji = [Int: String]()
     
     func emoji(for card: Card) -> String {
-        return "?"
+        if emoji[card.identifier] == nil {
+            if emojiChoices.count > 0 {
+                let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+                emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
+            }
+        }
+        //if emoji[card.identifier] != nil{
+        //    return emoji[card.identifier]!
+        //} else {
+        //    return "?"
+        //}
+        return emoji[card.identifier] ?? "?" //return card or if nil return"?"
     }
-}
 
+}
