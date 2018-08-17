@@ -55,9 +55,7 @@ class Concentration
         while cards.count > 0 {
             let indexGen = generateRandomIndex()
             shuffledCards.append(cards[indexGen])
-            print("appended \(indexGen)")
             cards.remove(at: indexGen)
-            print("removed at \(indexGen)")
         }
         
         cards = shuffledCards

@@ -60,11 +60,6 @@ class ViewController: UIViewController {
                 emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
             }
         }
-        //if emoji[card.identifier] != nil{
-        //    return emoji[card.identifier]!
-        //} else {
-        //    return "?"
-        //}
         return emoji[card.identifier] ?? "?" //return card or if nil return"?"
     }
 
