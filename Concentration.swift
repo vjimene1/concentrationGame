@@ -35,7 +35,7 @@ class Concentration
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
-        flipCount += 1
+        flipCount += 1 // iterates flipCount
     }
     
     init(numberOfPairsOfCards: Int){
