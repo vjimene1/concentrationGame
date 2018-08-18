@@ -12,28 +12,30 @@ class Concentration
 {
     var cards = [Card]()
     
+    var flipCount = 0
+    
     var indexOfOneAndOnlyFaceUpCard: Int?
     
     func chooseCard(at index: Int) {
-            if !cards[index].isMatched {
-                if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
-                    //check if cards match
-                    if cards[matchIndex].identifier == cards[index].identifier {
-                        cards[matchIndex].isMatched = true
-                        cards[index].isMatched = true
-                    }
-                    cards[index].isFaceUp = true
-                    indexOfOneAndOnlyFaceUpCard = nil
-                } else {
-                    //either no card or two cards are faceup
-                    for flipDownIndex in cards.indices {
-                        cards[flipDownIndex].isFaceUp = false
-                    }
-                    cards[index].isFaceUp = true
-                    indexOfOneAndOnlyFaceUpCard = index
+        if !cards[index].isMatched {
+            if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
+                //check if cards match
+                if cards[matchIndex].identifier == cards[index].identifier {
+                    cards[matchIndex].isMatched = true
+                    cards[index].isMatched = true
                 }
+                cards[index].isFaceUp = true
+                indexOfOneAndOnlyFaceUpCard = nil
+            } else {
+                //either no card or two cards are faceup
+                for flipDownIndex in cards.indices {
+                    cards[flipDownIndex].isFaceUp = false
+                }
+                cards[index].isFaceUp = true
+                indexOfOneAndOnlyFaceUpCard = index
             }
-
+        }
+        flipCount += 1
     }
     
     init(numberOfPairsOfCards: Int){
@@ -57,7 +59,6 @@ class Concentration
             shuffledCards.append(cards[indexGen])
             cards.remove(at: indexGen)
         }
-        
         cards = shuffledCards
         
         
