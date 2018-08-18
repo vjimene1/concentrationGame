@@ -152,6 +152,13 @@
                                     <action selector="newGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UZf-11-uFL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="seC-bL-cAS">
+                                <rect key="frame" x="125" y="551" width="148" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -166,6 +173,7 @@
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="P4G-IM-FUD" id="acg-tF-4TS"/>
+                        <outlet property="scoreLabel" destination="seC-bL-cAS" id="n7P-zb-cCN"/>
                         <outletCollection property="cardButtons" destination="dBu-Vl-jm3" collectionClass="NSMutableArray" id="fjg-fd-hIB"/>
                         <outletCollection property="cardButtons" destination="wwZ-Ud-aNr" collectionClass="NSMutableArray" id="fxT-CM-EBQ"/>
                         <outletCollection property="cardButtons" destination="GxM-WJ-PpZ" collectionClass="NSMutableArray" id="hnn-vi-deV"/>
