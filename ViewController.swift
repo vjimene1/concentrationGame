@@ -26,7 +26,6 @@ class ViewController: UIViewController {
     // newGame, reinitialize emoji Choices, and then updates view
     @IBAction func newGame(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1)/2)
-        //flipCount = 0
         emojiChoices = emojiThemes[Int(arc4random_uniform(UInt32(emojiThemes.count)))]
         updateViewFromModel()
     }
@@ -36,7 +35,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     
     @IBAction func touchCard(_ sender: UIButton) {
-        //flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()

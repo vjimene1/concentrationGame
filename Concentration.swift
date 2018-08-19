@@ -19,17 +19,15 @@ class Concentration
     var indexOfOneAndOnlyFaceUpCard: Int?
     
     func chooseCard(at index: Int) {
+        cards[index].pairIdentifier = true //Working on score
+        print(cards[index].pairIdentifier) //Working on score
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
+                flipCount += 1 // iterates flipCount
                 //check if cards match
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
-                    score += 2
-                }else{
-                    if score > 0 { //only subtracts score if it wont make score zero
-                        score = score - 1
-                    }
                 }
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
@@ -40,9 +38,9 @@ class Concentration
                 }
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = index
+                flipCount += 1 // iterates flipCount
             }
         }
-        flipCount += 1 // iterates flipCount
     }
     
     init(numberOfPairsOfCards: Int){
@@ -56,13 +54,9 @@ class Concentration
         
         var shuffledCards = [Card]()
         
-        func generateRandomIndex() -> Int {
-            let randomIndexShuffleCard = Int(arc4random_uniform(UInt32(cards.count)))
-            return randomIndexShuffleCard
-        }
-        
         while cards.count > 0 {
-            let indexGen = generateRandomIndex()
+            //let indexGen = generateRandomIndex()
+            let indexGen = Int(arc4random_uniform(UInt32(cards.count)))
             shuffledCards.append(cards[indexGen])
             cards.remove(at: indexGen)
         }
