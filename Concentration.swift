@@ -19,15 +19,32 @@ class Concentration
     var indexOfOneAndOnlyFaceUpCard: Int?
     
     func chooseCard(at index: Int) {
-        cards[index].pairIdentifier = true //Working on score
-        print(cards[index].pairIdentifier) //Working on score
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
                 flipCount += 1 // iterates flipCount
                 //check if cards match
+                for matches in cards.indices { //checking first card has been flipped before
+                    if matches != matchIndex, cards[matches].identifier == cards[matchIndex].identifier{
+                        if cards[matches].cardHasBeenFlipped == true, cards[matchIndex].cardHasBeenFlipped == true {
+                            score -= 1
+                        }
+                    }
+                }
+                for matches in cards.indices { //checking second card has been flipped before
+                    if matches != index, cards[matches].identifier == cards[index].identifier{
+                        if cards[matches].cardHasBeenFlipped == true, cards[index].cardHasBeenFlipped == true {
+                            score -= 1
+                        }
+                    }
+                }
+                cards[matchIndex].cardHasBeenFlipped = true
+                cards[index].cardHasBeenFlipped = true
+                
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    score += 2
+                    // enter a line of code to check if card partner has previously been flipped up
                 }
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
@@ -36,9 +53,12 @@ class Concentration
                 for flipDownIndex in cards.indices {
                     cards[flipDownIndex].isFaceUp = false
                 }
+                if indexOfOneAndOnlyFaceUpCard == nil {
+                    flipCount += 1 // iterates flipCount
+                }
                 cards[index].isFaceUp = true
+                //cards[index].pairIdentifier = true
                 indexOfOneAndOnlyFaceUpCard = index
-                flipCount += 1 // iterates flipCount
             }
         }
     }

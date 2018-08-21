@@ -12,7 +12,7 @@ struct Card {
     var isFaceUp = false
     var isMatched = false
     var identifier: Int
-    var pairIdentifier = false
+    var cardHasBeenFlipped = false
     
     static var identifierFactory = 0
     
