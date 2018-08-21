@@ -18,11 +18,22 @@ class Concentration
     
     var indexOfOneAndOnlyFaceUpCard: Int?
     
+    func flipTracker(cardIndex: Int) {
+        for matches in cards.indices { //checking second card has been flipped before
+            if matches != cardIndex, cards[matches].identifier == cards[cardIndex].identifier{
+                if cards[matches].cardHasBeenFlipped == true, cards[cardIndex].cardHasBeenFlipped == true {
+                    score -= 1
+                }
+            }
+        }
+    }
+    
     func chooseCard(at index: Int) {
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
                 flipCount += 1 // iterates flipCount
                 //check if cards match
+                /*
                 for matches in cards.indices { //checking first card has been flipped before
                     if matches != matchIndex, cards[matches].identifier == cards[matchIndex].identifier{
                         if cards[matches].cardHasBeenFlipped == true, cards[matchIndex].cardHasBeenFlipped == true {
@@ -37,6 +48,9 @@ class Concentration
                         }
                     }
                 }
+                */
+                flipTracker(cardIndex: matchIndex)
+                flipTracker(cardIndex: index)
                 cards[matchIndex].cardHasBeenFlipped = true
                 cards[index].cardHasBeenFlipped = true
                 
