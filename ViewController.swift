@@ -9,13 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-/*
-    var flipCount = 0{
-        didSet{
-            flipCountLabel.text = "Flips: \(flipCount)"
-        }
-    }
-*/
+
     var emojiThemes = [["👮‍♂️", "👷‍♂️", "💂‍♂️", "🕵️‍♂️", "👩‍⚕️", "👩‍🌾", "👩‍🍳", "👩‍🎓","👩‍🎤"],["👻", "🎃", "🍭","👹","👿","💩","💀","👺","🤡"],["😀","😃","😄","😁","😆","😅","😂","🤣","☺️"]]
     
     lazy var emojiChoices = emojiThemes[Int(arc4random_uniform(UInt32(emojiThemes.count)))]

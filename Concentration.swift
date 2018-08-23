@@ -19,11 +19,9 @@ class Concentration
     var indexOfOneAndOnlyFaceUpCard: Int?
     
     func flipTracker(cardIndex: Int) {
-        for matches in cards.indices { //checking second card has been flipped before
-            if matches != cardIndex, cards[matches].identifier == cards[cardIndex].identifier{
-                if cards[matches].cardHasBeenFlipped == true, cards[cardIndex].cardHasBeenFlipped == true {
-                    score -= 1
-                }
+        for matches in cards.indices { //checking if card has been flipped before
+            if matches != cardIndex, cards[matches].identifier == cards[cardIndex].identifier, cards[matches].cardHasBeenFlipped == true, cards[cardIndex].cardHasBeenFlipped == true {
+                score -= 1
             }
         }
     }
@@ -33,32 +31,16 @@ class Concentration
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
                 flipCount += 1 // iterates flipCount
                 //check if cards match
-                /*
-                for matches in cards.indices { //checking first card has been flipped before
-                    if matches != matchIndex, cards[matches].identifier == cards[matchIndex].identifier{
-                        if cards[matches].cardHasBeenFlipped == true, cards[matchIndex].cardHasBeenFlipped == true {
-                            score -= 1
-                        }
-                    }
-                }
-                for matches in cards.indices { //checking second card has been flipped before
-                    if matches != index, cards[matches].identifier == cards[index].identifier{
-                        if cards[matches].cardHasBeenFlipped == true, cards[index].cardHasBeenFlipped == true {
-                            score -= 1
-                        }
-                    }
-                }
-                */
-                flipTracker(cardIndex: matchIndex)
-                flipTracker(cardIndex: index)
-                cards[matchIndex].cardHasBeenFlipped = true
-                cards[index].cardHasBeenFlipped = true
-                
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                     score += 2
-                    // enter a line of code to check if card partner has previously been flipped up
+                    // check if cards have been flipped and deduct score
+                }else{
+                    flipTracker(cardIndex: matchIndex) //checks if first flipped card has been flipped before
+                    flipTracker(cardIndex: index) //checks if second card has been flipped before
+                    cards[matchIndex].cardHasBeenFlipped = true
+                    cards[index].cardHasBeenFlipped = true
                 }
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
@@ -71,12 +53,12 @@ class Concentration
                     flipCount += 1 // iterates flipCount
                 }
                 cards[index].isFaceUp = true
-                //cards[index].pairIdentifier = true
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
     }
     
+    // MARK: Initialize number of pairs of Cards
     init(numberOfPairsOfCards: Int){
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
